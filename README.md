@@ -63,6 +63,8 @@ The model I chose to use for this classification task is XGBoost and the evaluat
 Finally, accuracy is not a good metric for this particular task because of the ratio of positives to negatives in the data: the overwhelming number of negative cases allows a model trained to maximize accuracy to simply assign the negative label to all orders and achieve a 90% accuracy, despite utterly failing the task.
 
 #### Model Interpretation
+![image](https://github.com/BenjaminRoderick/product-return-prediction/blob/main/data/summary_plot.png)
+
 I used SHAP values to evaluate the importance of different features within my model. As can be seen in the image above, I have included the summary plot of feature importance in my model as a function of the value of each feature. My analysis of this plot for each feature is as follows:
 - **category_id**: The plot shows that certain values of this feature provide a very strong signal that the order will be returned or not. This indicates that, in the provided data, certain lower `category_id` items such as brakes and electronics will be returned very frequently, whereas higher codes, such as suspension and hvac, will be rarely returned.
 - **is_first_time_customer**: The most clear-cut separation of all the features. Despite the signal not being as strong as some of the other features, the clear separation indicates that being a new customer will almost always increase the odds of an order being returned.
@@ -73,12 +75,16 @@ I used SHAP values to evaluate the importance of different features within my mo
 To illustrate the signal of each feature more clearly, I've included the waterfall plots for each of a true negative, a true positive, a false negative and a false positive.
 
 #### True Negative
+![image](https://github.com/BenjaminRoderick/product-return-prediction/blob/main/data/true_negative.png)
 
 #### True Positive
+![image](https://github.com/BenjaminRoderick/product-return-prediction/blob/main/data/true_positive.png)
 
 #### False Negative
+![image](https://github.com/BenjaminRoderick/product-return-prediction/blob/main/data/false_negative.png)
 
 #### False Positive
+![image](https://github.com/BenjaminRoderick/product-return-prediction/blob/main/data/false_positive.png)
 
 #### Action Items
 In conclusion, the most consistent predictors of an order being returned are if the customer is making their first ever purchase and the day of the week. Other factors to remain wary of are the category of the item and the price, as they can provide a very strong signal, but are less clearly separated into positive and negative signal based on the value of the feature.
